@@ -28,6 +28,7 @@ class KeyboardViewController: UIViewController {
     let numbers = Keys.shared.numbersKeys
     let symbols = Keys.shared.symbolsKeys
     let ruKeys = Keys.shared.ruKeys
+    var isEn = true
     var currentText: String = TextField.shared.currentText
     
     // MARK: override functions
@@ -82,21 +83,41 @@ class KeyboardViewController: UIViewController {
         case true:
             guard let shiftImage = UIImage(systemName: "shift") else { return }
             shiftButton.setImage(shiftImage, for: .normal)
-            enKeysCollection.forEach {
-                guard let keyIndex = enKeysCollection.firstIndex(of: $0) else { return }
-                $0.setTitle(
-                    String(enKeys[keyIndex]),
-                    for: .normal)
+            if isEn {
+                enKeysCollection.forEach {
+                    guard let keyIndex = enKeysCollection.firstIndex(of: $0) else { return }
+                    $0.setTitle(
+                        String(enKeys[keyIndex]),
+                        for: .normal)
+                }
+            } else {
+                ruKeysCollection.forEach {
+                    guard let keyIndex = ruKeysCollection.firstIndex(of: $0) else { return }
+                    $0.setTitle(
+                        String(ruKeys[keyIndex]),
+                        for: .normal)
+                }
             }
+            
   ////////////////
         case false:
             guard let shiftImage = UIImage(systemName: "shift.fill") else { return }
             shiftButton.setImage(shiftImage, for: .normal)
-            enKeysCollection.forEach {
-                guard let keyIndex = enKeysCollection.firstIndex(of: $0) else { return }
-                $0.setTitle(
-                    String(enKeys[keyIndex]).uppercased(),
-                    for: .normal)
+            if isEn {
+                enKeysCollection.forEach {
+                    guard let keyIndex = enKeysCollection.firstIndex(of: $0) else { return }
+                    $0.setTitle(
+                        String(enKeys[keyIndex]).uppercased(),
+                        for: .normal)
+                }
+            } else {
+                ruKeysCollection.forEach {
+                    guard let keyIndex = ruKeysCollection.firstIndex(of: $0) else { return }
+                    $0.setTitle(
+                        String(ruKeys[keyIndex])
+                            .uppercased(),
+                        for: .normal)
+                }
             }
         }
     }
@@ -108,7 +129,7 @@ class KeyboardViewController: UIViewController {
     
     @IBAction func numbersButtonTapped() {
         // hide stacks
-        for stackView in [enStackView] {
+        for stackView in [enStackView, ruStackView] {
             stackView?.isHidden = true
         }
         
@@ -140,19 +161,59 @@ class KeyboardViewController: UIViewController {
     
     
     @IBAction func abcButtonTapped() {
-        // hide stacks
-        for stackView in [numbersStackView] {
-            stackView?.isHidden = true
+        if isEn {
+            // hide stacks
+            for stackView in [numbersStackView, ruStackView] {
+                stackView?.isHidden = true
+            }
+            
+            enStackView.isHidden = false
+            
+            setupKeysCollectionCorners(collection: enKeysCollection)
+            setupKeysCollectionTitles(collection: enKeysCollection, for: enKeys)
+            setupIconsCollection()
+        } else {
+            // hide stacks
+            for stackView in [numbersStackView, enStackView] {
+                stackView?.isHidden = true
+            }
+            
+            ruStackView.isHidden = false
+            
+            setupKeysCollectionCorners(collection: ruKeysCollection)
+            setupKeysCollectionTitles(collection: ruKeysCollection, for: ruKeys)
+            setupIconsCollection()
         }
-        
-        enStackView.isHidden = false
-        
-        setupKeysCollectionCorners(collection: enKeysCollection)
-        setupKeysCollectionTitles(collection: enKeysCollection, for: enKeys)
-        setupIconsCollection()
     }
     
     @IBAction func globeButtonTapped() {
+        if isEn {
+            // hide stacks
+            for stackView in [numbersStackView, enStackView] {
+                stackView?.isHidden = true
+            }
+            
+            ruStackView.isHidden = false
+            
+            setupKeysCollectionCorners(collection: ruKeysCollection)
+            setupKeysCollectionTitles(collection: ruKeysCollection, for: ruKeys)
+            setupIconsCollection()
+            
+            isEn = false
+        } else {
+            // hide stacks
+            for stackView in [numbersStackView, ruStackView] {
+                stackView?.isHidden = true
+            }
+            
+            enStackView.isHidden = false
+            
+            setupKeysCollectionCorners(collection: enKeysCollection)
+            setupKeysCollectionTitles(collection: enKeysCollection, for: enKeys)
+            setupIconsCollection()
+            
+            isEn = true
+        }
     }
     
     // MARK: private methods
@@ -169,17 +230,15 @@ class KeyboardViewController: UIViewController {
             switch collection {
             case enKeysCollection:
                 $0.setTitle(String(enKeys[keyIndex]).uppercased(), for: .normal)
-            case ruKeysCollection:  $0.setTitle(String(ruKeys[keyIndex]).uppercased(), for: .normal)
-            case numbersKeysCollection:
+            case ruKeysCollection:
+                $0.setTitle(String(ruKeys[keyIndex]).uppercased(), for: .normal)
+            default:
                 if keys == numbers {
                     $0.setTitle(String(numbers[keyIndex]), for: .normal)
                 } else {
                     $0.setTitle(String(symbols[keyIndex]), for: .normal)
                 }
-            default:
-                print("place for smailKeyboard")
             }
-        
         }
     }
     
@@ -201,15 +260,12 @@ extension KeyboardViewController {
         textField.layer.cornerRadius = 10
         
         // hide stacks
-        for stackView in [numbersStackView] {
+        for stackView in [numbersStackView, ruStackView] {
             stackView?.isHidden = true
         }
                 
         setupKeysCollectionCorners(collection: enKeysCollection)
         setupKeysCollectionTitles(collection: enKeysCollection, for: enKeys)
-        
-        setupKeysCollectionCorners(collection: ruKeysCollection)
-        setupKeysCollectionTitles(collection: ruKeysCollection, for: enKeys)
         
         setupIconsCollection()
         
