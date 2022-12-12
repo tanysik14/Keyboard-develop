@@ -129,6 +129,7 @@ class KeyboardViewController: UIViewController {
 //        }
         
         numbersStackView.isHidden = false
+        symbolsStackView.isHidden = true
         enStackView.isHidden = true
         ruStackView.isHidden = true
         
@@ -140,22 +141,28 @@ class KeyboardViewController: UIViewController {
     @IBAction func symbolsButtonTapped() {
         oneAndTwoStringStackView.isHidden = true
         symbolsStackView.isHidden = false
-//        guard let currentSymbolsButtonTitle = symbolsButton.currentTitle else { return }
-//
-//        switch currentSymbolsButtonTitle {
-//
-//        case "#+=":
-//            symbolsButton.setTitle("123", for: .normal)
+        
+        guard let currentSymbolsButtonTitle = symbolsButton.currentTitle else { return }
+
+        switch currentSymbolsButtonTitle {
+
+        case "#+=":
+            symbolsButton.setTitle("123", for: .normal)
+            oneAndTwoStringStackView.isHidden = true
+            symbolsStackView.isHidden = false
+            
 //            setupKeysCollectionTitles(collection: numbersKeysCollection,
 //                                      for: symbols)
-//
-//        default:
-//            symbolsButton.setTitle("#+=", for: .normal)
+
+        default:
+            symbolsButton.setTitle("#+=", for: .normal)
+            oneAndTwoStringStackView.isHidden = false
+            symbolsStackView.isHidden = true
 //            setupKeysCollectionTitles(collection: numbersKeysCollection,
 //                                      for: numbers)
-//        }
-//
-//        symbolsButton.titleLabel?.font = UIFont.systemFont(ofSize: 12)
+        }
+
+        symbolsButton.titleLabel?.font = UIFont.systemFont(ofSize: 12)
     }
     
     
