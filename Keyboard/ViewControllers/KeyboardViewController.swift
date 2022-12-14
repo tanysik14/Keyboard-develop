@@ -123,55 +123,51 @@ class KeyboardViewController: UIViewController {
     }
     
     @IBAction func numbersButtonTapped() {
-        // hide stacks
-//        for stackView in [enStackView] {
-//            stackView?.isHidden = true
-//        }
+
         
         numbersStackView.isHidden = false
+        symbolsStackView.isHidden = true
         enStackView.isHidden = true
         ruStackView.isHidden = true
         
-//        setupKeysCollectionCorners(collection: numbersKeysCollection)
-//        setupKeysCollectionTitles(collection: numbersKeysCollection, for: numbers)
-//        setupIconsCollection()
+
     }
     
     @IBAction func symbolsButtonTapped() {
         oneAndTwoStringStackView.isHidden = true
         symbolsStackView.isHidden = false
-//        guard let currentSymbolsButtonTitle = symbolsButton.currentTitle else { return }
-//
-//        switch currentSymbolsButtonTitle {
-//
-//        case "#+=":
-//            symbolsButton.setTitle("123", for: .normal)
+        
+        guard let currentSymbolsButtonTitle = symbolsButton.currentTitle else { return }
+
+        switch currentSymbolsButtonTitle {
+
+        case "#+=":
+            symbolsButton.setTitle("123", for: .normal)
+            oneAndTwoStringStackView.isHidden = true
+            symbolsStackView.isHidden = false
+            
 //            setupKeysCollectionTitles(collection: numbersKeysCollection,
 //                                      for: symbols)
-//
-//        default:
-//            symbolsButton.setTitle("#+=", for: .normal)
+
+        default:
+            symbolsButton.setTitle("#+=", for: .normal)
+            oneAndTwoStringStackView.isHidden = false
+            symbolsStackView.isHidden = true
 //            setupKeysCollectionTitles(collection: numbersKeysCollection,
 //                                      for: numbers)
-//        }
-//
-//        symbolsButton.titleLabel?.font = UIFont.systemFont(ofSize: 12)
+        }
+
+        symbolsButton.titleLabel?.font = UIFont.systemFont(ofSize: 12)
     }
     
     
     @IBAction func abcButtonTapped() {
-        // hide stacks
-//        for stackView in [numbersStackView] {
-//            stackView?.isHidden = true
-//        }
+
     
         enStackView.isHidden = false
         numbersStackView.isHidden = true
         ruStackView.isHidden = true
-//
-//        setupKeysCollectionCorners(collection: enKeysCollection)
-//        setupKeysCollectionTitles(collection: enKeysCollection, for: enKeys)
-//        setupIconsCollection()
+
     }
     
     @IBAction func globeButtonTapped() {
@@ -237,23 +233,4 @@ extension KeyboardViewController {
             numbersStackView.isHidden = true
         }
         
-
-        
-       
-        
-        
-        // hide stacks
-//        for stackView in [numbersStackView] {
-//            stackView?.isHidden = true
-//        }
-//
-//        setupKeysCollectionCorners(collection: enKeysCollection)
-//        setupKeysCollectionTitles(collection: enKeysCollection, for: enKeys)
-//
-//        setupKeysCollectionCorners(collection: ruKeysCollection)
-//        setupKeysCollectionTitles(collection: ruKeysCollection, for: enKeys)
-//
-//        setupIconsCollection()
-//
-//    }
 }

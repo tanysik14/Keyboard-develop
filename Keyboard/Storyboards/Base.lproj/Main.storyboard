@@ -1617,7 +1617,7 @@
                             <constraint firstItem="fnO-te-vwj" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="1" id="6Pp-qF-Fc3"/>
                             <constraint firstAttribute="trailing" secondItem="TP9-fD-O5r" secondAttribute="trailing" constant="16" id="AbM-s4-ZGG"/>
                             <constraint firstAttribute="bottom" secondItem="F1H-HR-kvE" secondAttribute="bottom" constant="20" id="DWf-fB-H5N"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="kmF-g4-st5" secondAttribute="bottom" constant="20" id="Ogw-9c-H0S"/>
+                            <constraint firstAttribute="bottom" secondItem="kmF-g4-st5" secondAttribute="bottom" constant="20" id="Ogw-9c-H0S"/>
                             <constraint firstItem="kmF-g4-st5" firstAttribute="top" secondItem="fnO-te-vwj" secondAttribute="bottom" constant="8" id="QK4-UY-Zdb"/>
                             <constraint firstItem="fnO-te-vwj" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="SXo-16-5Ic"/>
                             <constraint firstAttribute="trailing" secondItem="kmF-g4-st5" secondAttribute="trailing" constant="16" id="Sq2-WS-uG8"/>
@@ -1628,6 +1628,7 @@
                             <constraint firstItem="fnO-te-vwj" firstAttribute="height" relation="greaterThanOrEqual" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="343:667" id="sJT-fq-DFW"/>
                             <constraint firstItem="kmF-g4-st5" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="xSu-fo-ONd"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="fnO-te-vwj" secondAttribute="trailing" constant="16" id="xbA-ot-aF1"/>
+                            <constraint firstItem="kmF-g4-st5" firstAttribute="height" relation="greaterThanOrEqual" secondItem="fnO-te-vwj" secondAttribute="height" multiplier="0.384615" id="zY8-Xp-oOp"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="7WN-V2-FLf">
